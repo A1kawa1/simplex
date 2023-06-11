@@ -1,0 +1,78 @@
+{% extends "main.html" %}
+{% block content %}
+<a href="{% url 'solve:home' %}">на главную</a>
+<br>
+<br>
+<h2>Ответ</h2>
+<h4>Максимум</h4>
+<table>
+    <tr style="border: 1px solid #000;">
+        <td class="lyo" style="border-right: 1px solid black; text-align: center; width: 10%;"><strong>БР</strong></td>
+        {% for el in x_max %}
+            <td class="lyo" style="border-right: 1px solid black; text-align: center; width: 20%;"><strong>A{{ forloop.counter }}</strong></td>
+        {% endfor %}
+    </tr>
+    {% for el in result_max %}
+        {% for str in el.str_res %}
+        <tr style="border: 1px solid #000;">
+            {% for el_tmp in str %}
+            <td style="border-right: 1px solid black; text-align: center;"> {{ el_tmp }} </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        <tr style="border: 1px solid #000;">
+            {% for mark in el.mark %}
+                <td style="border-right: 1px solid black; text-align: center;"> {{ mark }} </td>
+            {% endfor %}
+        </tr>
+        {% if not forloop.last %}
+            <tr style="border: 1px solid #000;">
+                <td style="border-right: 1px solid black;" colspan="{{ len }}">&nbsp;</td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+<br>
+{% for el in x_max %}
+x{{ forloop.counter }} = {{ el }}
+<br>
+{% endfor %}
+<p>max = {{ res_max }}</p>
+<br>
+<br>
+
+<h4>Минимум</h4>
+<table>
+    <tr style="border: 1px solid #000;">
+        <td class="lyo" style="border-right: 1px solid black; text-align: center; width: 10%;"><strong>БР</strong></td>
+        {% for el in x_min %}
+            <td class="lyo" style="border-right: 1px solid black; text-align: center; width: 20%;"><strong>A{{ forloop.counter }}</strong></td>
+        {% endfor %}
+    </tr>
+    {% for el in result_min %}
+        {% for str in el.str_res %}
+        <tr style="border: 1px solid #000;">
+            {% for el_tmp in str %}
+                <td style="border-right: 1px solid black; text-align: center;"> {{ el_tmp }} </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        <tr style="border: 1px solid #000;">
+            {% for mark in el.mark %}
+                <td style="border-right: 1px solid black; text-align: center;"> {{ mark }} </td>
+            {% endfor %}
+        </tr>
+        {% if not forloop.last %}
+            <tr style="border: 1px solid #000;">
+                <td style="border-right: 1px solid black;" colspan="{{ len }}">&nbsp;</td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+<br>
+{% for el in x_min %}
+x{{ forloop.counter }} = {{ el }}
+<br>
+{% endfor %}
+<p>min = {{ res_min }}</p>
+{% endblock content %}

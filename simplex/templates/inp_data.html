@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block content %}
+
+<form class="form-inline my-2 my-lg-0">
+<div>
+    <a href="{% url 'solve:home' %}">на главную</a>
+    <br>
+    <br>
+    <strong>F = </strong>
+    {% for el in names %}
+        <input style="border-radius: 7px; width: 50px;" name="{{el}}">
+        {{ el }}
+        {% if not forloop.last %}
+            +
+        {% endif %}
+    {% endfor %}
+    <br>
+    <strong>Ограничения:</strong>
+    <br>
+    {% for cond in conds %}
+    {% for el in names %}
+        <input style="border-radius: 7px; width: 50px;" name="{{cond}}-{{el}}">
+        {{ el }}
+        {% if not forloop.last %}
+            +
+        {% else %}
+            = <input style="border-radius: 7px; width: 50px;" name="{{cond}}-res">
+            <br>
+        {% endif %}
+    {% endfor %}
+    {% endfor %}
+    <br>
+    <button  class="btn btn-primary" type="submit">расчитать</button>
+</div>
+</form>
+{% endblock content %}
